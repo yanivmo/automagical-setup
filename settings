@@ -1,3 +1,5 @@
-# 1 to install NordVPN, 0 to skip
+# NordVPN: 1 to install, 0 to skip
 nordvpn=0
 
+# Oh My Zsh! plugins
+ohmyzsh_plugins='git history fasd npm docker docker-compose'

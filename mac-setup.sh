@@ -49,7 +49,11 @@ install_nordvpn() {
 
 install_oh_my_zsh() {
   [ -n "$ZSH" ] && ec "${green}Found ${yellow}Oh My Zsh!${noc}" && return 0
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || fail 'Failed to install Oh My Zsh!'
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || fail 'Failed to install Oh My Zsh!'
+
+  grep --quiet 'plugins=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
+  sed -i .old "s/plugins=.*/plugins=(${ohmyzsh_plugins})/g" $HOME/.zshrc || fail 'Failed to update zsh plugins'
+  br
 }
 
 install_powerlevel10k() {
@@ -61,8 +65,7 @@ install_powerlevel10k() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${powerlevel10k_dir} || fail 'Failed to install powerlevel10k'
 
   grep --quiet 'ZSH_THEME=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
-  sed -i .old 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
-  ec '.zshrc has been updated; backup saved in .zshrc.old'
+  sed -i '' 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
 }
 
 # Installations themselves

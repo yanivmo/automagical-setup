@@ -10,6 +10,10 @@ tap "homebrew/cask-fonts"
 cask "font-meslo-for-powerline"
 cask "font-awesome-terminal-fonts"
 
+# Productivity
+brew "fasd"    # Fast navigation and completion in shell
+cask "flycut"  # Clipboard manager
+
 # Development
 brew "git"
 cask "iterm2"
@@ -22,4 +26,3 @@ cask "telegram"
 
 # Entertainment
 cask "spotify"
-
