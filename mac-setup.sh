@@ -48,11 +48,11 @@ install_nordvpn() {
 }
 
 install_oh_my_zsh() {
-  # [ -n "$ZSH" ] && ec "${green}Found ${yellow}Oh My Zsh!${noc}" && return 0
-  # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || fail 'Failed to install Oh My Zsh!'
+  [ -n "$ZSH" ] && ec "${green}Found ${yellow}Oh My Zsh!${noc}" && return 0
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || fail 'Failed to install Oh My Zsh!'
 
   # Download the non bundled zsh-autosuggestions plugin
-  # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
   # Set the plugins list
   grep --quiet 'plugins=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
@@ -72,6 +72,10 @@ install_powerlevel10k() {
   sed -i '' 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
 }
 
+install_iterm2_profile() {
+  cp ./iterm2-profile.json $HOME/Library/Application\ Support/iTerm2/DynamicProfiles/
+}
+
 # Installations themselves
 #-------------------------------------------
 
@@ -81,12 +85,14 @@ missing-cask nordvpn && install_nordvpn
 
 br
 warn Installing from Brewfile:
-brew bundle --file ./Brewfile
+brew bundle --file ./Brewfile || fail 'Failed to install from Brewfile'
 
 br
 warn Pumping up your zsh:
 install_oh_my_zsh
 install_powerlevel10k
+
+install_iterm2_profile
 
 br
 success 'Done. Some changes might not be activated until the shell is restarted.'

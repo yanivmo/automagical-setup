@@ -3,4 +3,4 @@
 ## TODO
 - [ ] vim configuration
 - [ ] git configuration
-- [ ] iterm2 configuration
+- [x] iterm2 configuration
