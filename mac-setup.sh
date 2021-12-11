@@ -55,7 +55,7 @@ install_oh_my_zsh() {
 install_powerlevel10k() {
   powerlevel10k_dir=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-  [ -d "${powerlevel10k_dir}" ] && ec "${green}Skipping ${yellow}powerlevel10k${noc}" && return 0
+  [ -d "${powerlevel10k_dir}" ] && ec "${green}Found ${yellow}powerlevel10k${noc}" && return 0
 
   ec "${green}Installing ${yellow}powerlevel10k${noc}"
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${powerlevel10k_dir} || fail 'Failed to install powerlevel10k'

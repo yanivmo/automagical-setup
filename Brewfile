@@ -16,6 +16,10 @@ cask "iterm2"
 cask "visual-studio-code"
 cask "jetbrains-toolbox"
 
+# Communication
+cask "slack"
+cask "telegram"
+
 # Entertainment
 cask "spotify"
 
