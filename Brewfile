@@ -16,6 +16,11 @@ cask "flycut"  # Clipboard manager
 
 # Development
 brew "git"
+brew "node@14"
+brew "pyenv"
+brew "docker"
+brew "docker-compose"
+
 cask "iterm2"
 cask "visual-studio-code"
 cask "jetbrains-toolbox"
