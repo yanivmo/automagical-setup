@@ -2,4 +2,4 @@
 nordvpn=0
 
 # Oh My Zsh! plugins
-ohmyzsh_plugins='git history fasd npm docker docker-compose'
+ohmyzsh_plugins='git history fzf fasd npm docker docker-compose zsh-autosuggestions'

@@ -11,6 +11,7 @@ cask "font-meslo-for-powerline"
 cask "font-awesome-terminal-fonts"
 
 # Productivity
+brew "fzf"     # Command-line fuzzy finder
 brew "fasd"    # Fast navigation and completion in shell
 cask "flycut"  # Clipboard manager
 

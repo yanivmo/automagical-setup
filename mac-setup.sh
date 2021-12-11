@@ -48,9 +48,13 @@ install_nordvpn() {
 }
 
 install_oh_my_zsh() {
-  [ -n "$ZSH" ] && ec "${green}Found ${yellow}Oh My Zsh!${noc}" && return 0
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || fail 'Failed to install Oh My Zsh!'
+  # [ -n "$ZSH" ] && ec "${green}Found ${yellow}Oh My Zsh!${noc}" && return 0
+  # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || fail 'Failed to install Oh My Zsh!'
 
+  # Download the non bundled zsh-autosuggestions plugin
+  # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+  # Set the plugins list
   grep --quiet 'plugins=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
   sed -i .old "s/plugins=.*/plugins=(${ohmyzsh_plugins})/g" $HOME/.zshrc || fail 'Failed to update zsh plugins'
   br

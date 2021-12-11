@@ -1,2 +1,6 @@
 # automagical-setup
-On click setup for your development machine
+
+## TODO
+- [ ] vim configuration
+- [ ] git configuration
+- [ ] iterm2 configuration
