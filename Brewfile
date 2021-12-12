@@ -21,6 +21,7 @@ brew "node@14"
 brew "pyenv"
 brew "docker"
 brew "docker-compose"
+brew "awscli"
 
 cask "iterm2"
 cask "visual-studio-code"
