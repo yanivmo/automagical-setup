@@ -4,7 +4,9 @@ So you finally got your new and shiny Mac and now you need to setup
 your usual development environment. With Automagical Setup it's one
 click away.
 
-This is how I do things. Fork and do it your way!
+Check Brewfile for the list of the installed applications.
+This is what I like installed. You are welcome to propose other useful
+tools or fork and do it your way!
 
 This project is constantly updated as I iron out my Mac configuration.
 
@@ -31,5 +33,4 @@ cd automagical-setup
 
 - vim configuration
 - git configuration
-- python
 - docker configuration

@@ -94,14 +94,25 @@ install_iterm2_profile() {
   profile_pathname="$HOME/Library/Application Support/iTerm2/DynamicProfiles/automagic-profile.json"
   [ -f "${profile_pathname}" ] && ec "${green}Found ${yellow}iTerm2 profile${noc}" && return 0
 
+  configuring "iTerm2 profile"
   cp ./iterm2-profile.json "${profile_pathname}" || fail 'Failed to install iTerm2 profile'
-  ec "${green}Installed ${yellow}iTerm2 profile${noc}"
 }
 
 # Post-install configurations
 #-------------------------------------------
+
 post_install_node() {
   missing node && echo 'export PATH="/opt/homebrew/opt/node@14/bin:$PATH"' >> ~/.zshrc && configuring node
+}
+
+post_install_pyenv() {
+  [[ "$PATH" =~ pyenv ]] && found pyenv && return 0
+
+  configuring pyenv
+  pyenv install ${default_python}:latest
+  pyenv global $(pyenv versions --bare | grep "${default_python}")
+  echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+  echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 }
 
 # Installations themselves
@@ -124,6 +135,7 @@ install_iterm2_profile
 br
 warn Post installation configuration:
 post_install_node
+post_install_pyenv
 
 br
 success 'Done. Some changes might not be activated until the shell is restarted.'

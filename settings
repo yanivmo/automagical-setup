@@ -8,3 +8,7 @@ iterm_profile=1
 
 # Oh My Zsh! plugins
 ohmyzsh_plugins='git history fzf fasd npm docker docker-compose zsh-autosuggestions'
+
+# Python version (without the patch number) to be configured as the global default.
+# Will install the latest patch for the specified version.
+default_python=3.8
