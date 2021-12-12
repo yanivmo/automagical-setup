@@ -14,6 +14,7 @@ cask "font-awesome-terminal-fonts"
 brew "fzf"     # Command-line fuzzy finder
 brew "fasd"    # Fast navigation and completion in shell
 cask "flycut"  # Clipboard manager
+cask "zoom"    # Video meetings
 
 # Development
 brew "git"
