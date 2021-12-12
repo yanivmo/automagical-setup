@@ -73,7 +73,13 @@ install_powerlevel10k() {
 }
 
 install_iterm2_profile() {
-  cp ./iterm2-profile.json $HOME/Library/Application\ Support/iTerm2/DynamicProfiles/
+  [ "${iterm_profile}" = "0" ] && ec "${green}Skipping ${yellow}iTerm2 profile${noc}" && return 0
+
+  profile_pathname="$HOME/Library/Application Support/iTerm2/DynamicProfiles/automagic-profile.json"
+  [ -f "${profile_pathname}" ] && ec "${green}Found ${yellow}iTerm2 profile${noc}" && return 0
+
+  cp ./iterm2-profile.json "${profile_pathname}" || fail 'Failed to install iTerm2 profile'
+  ec "${green}Installed ${yellow}iTerm2 profile${noc}"
 }
 
 # Installations themselves
@@ -92,6 +98,7 @@ warn Pumping up your zsh:
 install_oh_my_zsh
 install_powerlevel10k
 
+br
 install_iterm2_profile
 
 br

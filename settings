@@ -1,5 +1,10 @@
 # NordVPN: 1 to install, 0 to skip
 nordvpn=0
 
+# iTerm2 profile: 1 to install, 0 to skip
+# Configures natural editing key mapping, powerlevel compatible fonts and
+# makes the right option key to function as Alt/Esc+ key
+iterm_profile=1
+
 # Oh My Zsh! plugins
 ohmyzsh_plugins='git history fzf fasd npm docker docker-compose zsh-autosuggestions'
