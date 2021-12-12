@@ -5,11 +5,6 @@ cask "bitwarden"
 cask "firefox"
 cask "google-chrome"
 
-# Fonts
-tap "homebrew/cask-fonts"
-cask "font-meslo-for-powerline"
-cask "font-awesome-terminal-fonts"
-
 # Productivity
 brew "fzf"                 # Command-line fuzzy finder
 brew "fasd"                # Fast navigation and completion in shell
