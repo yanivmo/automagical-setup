@@ -110,9 +110,14 @@ post_install_pyenv() {
 
   configuring pyenv
   pyenv install ${default_python}:latest
-  pyenv global $(pyenv versions --bare | grep "${default_python}")
+  python_version=$(pyenv versions --bare | grep "${default_python}")
+  pyenv global ${python_version} || fail 'Failed to configure Python'
+
+  PATH="$HOME/.local/bin:$PATH" $(pyenv root)/versions/${python_version}/bin/pip install -q -q --user pipenv
+
   echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
   echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
 }
 
 # Installations themselves
