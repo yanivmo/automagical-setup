@@ -6,3 +6,4 @@
 - [x] iterm2 configuration
 - [x] awscli2
 - [x] zoom
+- [ ] python

@@ -8,25 +8,39 @@ source settings
 # Helper functions
 #-------------------------------------------
 
+installing() {
+  ec "${green}Installing ${yellow}$1${noc}"
+}
+
+configuring() {
+  ec "${green}Configuring ${yellow}$1${noc}"
+}
+
+skipping() {
+  ec "${green}Skipping ${yellow}$1${noc}"
+}
+
+found() {
+  ec "${green}Found ${yellow}$1${noc}"
+}
+
 # Returns 0 if an executable is NOT on PATH
 missing() {
   if which $1 &>/dev/null; then
-    ec "${green}Found ${yellow}$1${noc}"
+    found "$1"
     return 1
   fi
 
-  ec "${green}Installing ${yellow}$1${noc}"
   return 0 
 }
 
 # Returns 0 if a cask is NOT installed
 missing-cask() {
   if brew list --cask $1 &>/dev/null; then
-    ec "${green}Found ${yellow}$1${noc}"
+    found "$1"
     return 1
   fi
 
-  ec "${green}Installing ${yellow}$1${noc}"
   return 0 
 }
 
@@ -34,6 +48,7 @@ missing-cask() {
 #-------------------------------------------
 
 install_brew() {
+  installing brew
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || fail 'Failed to install brew'
 
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${USER}/.zprofile
@@ -43,12 +58,13 @@ install_brew() {
 install_nordvpn() {
   [ "${nordvpn}" = "0" ] && ec "${green}Skipping ${yellow}nordvpn${noc}" && return 0
 
+  installing nordvpn
   brew install nordvpn || fail Failed to install NordVPN
   are_you_sure 'Would you like to stop the script to activate the VPN?' && exit 0
 }
 
 install_oh_my_zsh() {
-  [ -n "$ZSH" ] && ec "${green}Found ${yellow}Oh My Zsh!${noc}" && return 0
+  [ -n "$ZSH" ] && found "Oh My Zsh!" && return 0
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || fail 'Failed to install Oh My Zsh!'
 
   # Download the non bundled zsh-autosuggestions plugin
@@ -63,9 +79,9 @@ install_oh_my_zsh() {
 install_powerlevel10k() {
   powerlevel10k_dir=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-  [ -d "${powerlevel10k_dir}" ] && ec "${green}Found ${yellow}powerlevel10k${noc}" && return 0
+  [ -d "${powerlevel10k_dir}" ] && found powerlevel10k && return 0
 
-  ec "${green}Installing ${yellow}powerlevel10k${noc}"
+  installing powerlevel10k
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${powerlevel10k_dir} || fail 'Failed to install powerlevel10k'
 
   grep --quiet 'ZSH_THEME=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
@@ -73,13 +89,19 @@ install_powerlevel10k() {
 }
 
 install_iterm2_profile() {
-  [ "${iterm_profile}" = "0" ] && ec "${green}Skipping ${yellow}iTerm2 profile${noc}" && return 0
+  [ "${iterm_profile}" = "0" ] && skipping "iTerm2 profile" && return 0
 
   profile_pathname="$HOME/Library/Application Support/iTerm2/DynamicProfiles/automagic-profile.json"
   [ -f "${profile_pathname}" ] && ec "${green}Found ${yellow}iTerm2 profile${noc}" && return 0
 
   cp ./iterm2-profile.json "${profile_pathname}" || fail 'Failed to install iTerm2 profile'
   ec "${green}Installed ${yellow}iTerm2 profile${noc}"
+}
+
+# Post-install configurations
+#-------------------------------------------
+post_install_node() {
+  missing node && echo 'export PATH="/opt/homebrew/opt/node@14/bin:$PATH"' >> ~/.zshrc && configuring node
 }
 
 # Installations themselves
@@ -97,9 +119,11 @@ br
 warn Pumping up your zsh:
 install_oh_my_zsh
 install_powerlevel10k
+install_iterm2_profile
 
 br
-install_iterm2_profile
+warn Post installation configuration:
+post_install_node
 
 br
 success 'Done. Some changes might not be activated until the shell is restarted.'
