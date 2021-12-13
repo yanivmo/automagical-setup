@@ -33,3 +33,10 @@ cask "telegram"
 
 # Entertainment
 cask "spotify"
+
+# Fonts
+tap "homebrew/cask-fonts"
+cask "font-fira-mono-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-hasklug-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
