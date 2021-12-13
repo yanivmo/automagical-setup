@@ -9,7 +9,7 @@ cask "google-chrome"
 brew "fzf"                 # Command-line fuzzy finder
 brew "fasd"                # Fast navigation and completion in shell
 brew "the_silver_searcher" # Fast search-in-files shell command
-cask "flycut"              # Clipboard manager
+cask "maccy"               # Clipboard manager
 cask "zoom"                # Video meetings
 cask "notion"              # Note taking and knowledge management
 
