@@ -33,4 +33,3 @@ cd automagical-setup
 
 - vim configuration
 - git configuration
-- docker configuration

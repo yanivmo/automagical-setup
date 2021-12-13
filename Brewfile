@@ -19,9 +19,9 @@ brew "tig"                 # TUI for Git
 brew "jq"                  # Command-line JSON processor
 brew "node@14"
 brew "pyenv"
-brew "docker"
-brew "docker-compose"
 brew "awscli"
+cask "docker"
+brew "docker-compose"
 
 cask "iterm2"
 cask "visual-studio-code"
