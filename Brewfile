@@ -20,6 +20,7 @@ brew "jq"                  # Command-line JSON processor
 brew "node@14"
 brew "pyenv"
 brew "awscli"
+cask "aws-vault"
 cask "docker"
 brew "docker-compose"
 
