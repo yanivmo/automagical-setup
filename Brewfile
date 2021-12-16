@@ -9,6 +9,7 @@ cask "google-chrome"
 brew "fzf"                 # Command-line fuzzy finder
 brew "fasd"                # Fast navigation and completion in shell
 brew "the_silver_searcher" # Fast search-in-files shell command
+brew "sevenzip"            # 7-Zip file archiver with a high compression ratio
 cask "maccy"               # Clipboard manager
 cask "zoom"                # Video meetings
 cask "notion"              # Note taking and knowledge management
