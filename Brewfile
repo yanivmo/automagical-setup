@@ -32,9 +32,11 @@ cask "jetbrains-toolbox"
 # Communication
 cask "slack"
 cask "telegram"
+cask "whatsapp"
 
 # Entertainment
 cask "spotify"
+cask "iina"                 # Advanced video player
 
 # Fonts
 tap "homebrew/cask-fonts"
