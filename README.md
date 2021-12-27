@@ -28,6 +28,7 @@ cd automagical-setup
 - Need something extra or want to remove something? It's mostly a simple list you can easily edit.
 - Configures Oh My Zsh!, powerlevel10k and even iTerm2 fonts automatically.
 - Allows to turn on or off features in the settings file. Take a look!
+- Rerun updates outdated casks and formulae.
 
 ## Missing parts
 

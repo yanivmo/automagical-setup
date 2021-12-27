@@ -13,6 +13,7 @@ brew "sevenzip"            # 7-Zip file archiver with a high compression ratio
 cask "maccy"               # Clipboard manager
 cask "zoom"                # Video meetings
 cask "notion"              # Note taking and knowledge management
+cask "rectangle"           # Manage windows using the keyboard
 
 # Development
 brew "git"
