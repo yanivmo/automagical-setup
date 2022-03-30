@@ -14,8 +14,11 @@ cask "maccy"               # Clipboard manager
 cask "zoom"                # Video meetings
 cask "notion"              # Note taking and knowledge management
 cask "rectangle"           # Manage windows using the keyboard
+cask "homebrew/cask-drivers/logitech-options" # Customize configuration of Logitech devices
+cask "webcatalog"          # Run websites like desktop apps
 
 # Development
+brew "wget"                # Non interactive network downloader
 brew "git"
 brew "tig"                 # TUI for Git
 brew "jq"                  # Command-line JSON processor
