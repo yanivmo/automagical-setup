@@ -15,7 +15,6 @@ cask "webcatalog"          # Run websites like desktop apps
 
 # Development
 brew "wget"                # Non interactive network downloader
-brew "git"
 brew "tig"                 # TUI for Git
 brew "jq"                  # Command-line JSON processor
 brew "node@14"
