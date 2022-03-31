@@ -132,7 +132,7 @@ warn Installing from Brewfile:
 brew bundle --file ./universal.brewfile || fail 'Failed to install from Brewfile'
 
 br
-missing chrome && install_chrome
+missing google-chrome && install_chrome
 
 br
 warn Pumping up your zsh:
