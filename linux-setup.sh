@@ -89,6 +89,12 @@ install_powerlevel10k() {
   sed -i '' 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
 }
 
+install_chrome() {
+    installing "Google Chrome"
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb || fail 'Failed to download Chrome'
+    sudo dpkg -i google-chrome-stable_current_amd64.deb || fail 'Failed to install Chrome'
+}
+
 # Post-install configurations
 #-------------------------------------------
 
@@ -114,6 +120,9 @@ post_install_pyenv() {
 # Installations themselves
 #-------------------------------------------
 
+sudo apt update
+sudo apt install build-essential
+
 missing brew && install_brew
 
 missing-cask nordvpn && install_nordvpn
@@ -121,6 +130,9 @@ missing-cask nordvpn && install_nordvpn
 br
 warn Installing from Brewfile:
 brew bundle --file ./universal.brewfile || fail 'Failed to install from Brewfile'
+
+br
+missing chrome && install_chrome
 
 br
 warn Pumping up your zsh:
