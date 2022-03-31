@@ -73,7 +73,7 @@ install_oh_my_zsh() {
 
   # Set the plugins list
   grep --quiet 'plugins=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
-  sed -i .old "s/plugins=.*/plugins=(${ohmyzsh_plugins})/g" $HOME/.zshrc || fail 'Failed to update zsh plugins'
+  sed -i '' .old "s/plugins=.*/plugins=(${ohmyzsh_plugins})/g" $HOME/.zshrc || fail 'Failed to update zsh plugins'
   br
 }
 
