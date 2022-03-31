@@ -51,8 +51,9 @@ install_brew() {
   installing brew
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || fail 'Failed to install brew'
 
-  echo 'eval "$(~/.linuxbrew/bin/brew shellenv)"' >> ~/.zprofile
-  eval "$(~/.linuxbrew/bin/brew shellenv)"
+  test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+  test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zprofile
 }
 
 install_nordvpn() {
