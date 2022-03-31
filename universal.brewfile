@@ -2,7 +2,6 @@
 cask "bitwarden"
 
 # Browsers
-cask "firefox"
 cask "google-chrome"
 
 # Productivity
