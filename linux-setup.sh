@@ -51,8 +51,8 @@ install_brew() {
   installing brew
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || fail 'Failed to install brew'
 
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${USER}/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  echo 'eval "$(~/.linuxbrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(~/.linuxbrew/bin/brew shellenv)"
 }
 
 install_nordvpn() {
@@ -88,16 +88,6 @@ install_powerlevel10k() {
   sed -i '' 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
 }
 
-install_iterm2_profile() {
-  [ "${iterm_profile}" = "0" ] && skipping "iTerm2 profile" && return 0
-
-  profile_pathname="$HOME/Library/Application Support/iTerm2/DynamicProfiles/automagic-profile.json"
-  [ -f "${profile_pathname}" ] && ec "${green}Found ${yellow}iTerm2 profile${noc}" && return 0
-
-  configuring "iTerm2 profile"
-  cp ./iterm2-profile.json "${profile_pathname}" || fail 'Failed to install iTerm2 profile'
-}
-
 # Post-install configurations
 #-------------------------------------------
 
@@ -129,18 +119,17 @@ missing-cask nordvpn && install_nordvpn
 
 br
 warn Installing from Brewfile:
-brew bundle --file ./Brewfile || fail 'Failed to install from Brewfile'
+brew bundle --file ./universal.brewfile || fail 'Failed to install from Brewfile'
 
 br
 warn Pumping up your zsh:
 install_oh_my_zsh
 install_powerlevel10k
-install_iterm2_profile
 
 br
-warn Post installation configuration:
-post_install_node
-post_install_pyenv
+# warn Post installation configuration:
+# post_install_node
+# post_install_pyenv
 
 br
 success 'Done. Some changes might not be activated until the shell is restarted.'

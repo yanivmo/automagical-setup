@@ -10,6 +10,16 @@ tools or fork and do it your way!
 
 This project is constantly updated as I iron out my Mac configuration.
 
+## Prerequisites
+
+Automagical Setup requires to be running in zsh and needs git and curl. On MacOS you
+should have everything prebundled. On Ubuntu run the following commnads:
+
+```
+sudo apt-get update
+sudo apt-get install curl git zsh
+```
+
 ## Quick start
 
 ```sh

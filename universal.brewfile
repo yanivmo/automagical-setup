@@ -1,0 +1,45 @@
+# Security
+cask "bitwarden"
+
+# Browsers
+cask "firefox"
+cask "google-chrome"
+
+# Productivity
+brew "fzf"                 # Command-line fuzzy finder
+brew "fasd"                # Fast navigation and completion in shell
+brew "the_silver_searcher" # Fast search-in-files shell command
+brew "sevenzip"            # 7-Zip file archiver with a high compression ratio
+cask "zoom"                # Video meetings
+cask "notion"              # Note taking and knowledge management
+cask "webcatalog"          # Run websites like desktop apps
+
+# Development
+brew "wget"                # Non interactive network downloader
+brew "git"
+brew "tig"                 # TUI for Git
+brew "jq"                  # Command-line JSON processor
+brew "node@14"
+brew "pyenv"
+brew "awscli"
+cask "aws-vault"
+cask "docker"
+brew "docker-compose"
+
+cask "visual-studio-code"
+cask "jetbrains-toolbox"
+
+# Communication
+cask "slack"
+cask "telegram"
+cask "whatsapp"
+
+# Entertainment
+cask "spotify"
+
+# Fonts
+tap "homebrew/cask-fonts"
+cask "font-fira-mono-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-hasklug-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
