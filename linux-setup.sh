@@ -73,8 +73,21 @@ install_oh_my_zsh() {
 
   # Set the plugins list
   grep --quiet 'plugins=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
-  sed -i '' .old "s/plugins=.*/plugins=(${ohmyzsh_plugins})/g" $HOME/.zshrc || fail 'Failed to update zsh plugins'
+  sed -i "s/plugins=.*/plugins=(${ohmyzsh_plugins})/g" $HOME/.zshrc || fail 'Failed to update zsh plugins'
   br
+}
+
+install_nerd_fonts() {
+  nerdfonts_dir=$HOME/nerd-fonts
+
+  [ -d "${nerdfonts_dir}" ] && found nerd-fonts && return 0
+
+  installing nerd-fonts
+
+  git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ${nerdfonts_dir} || fail 'Failed to download nerd-fonts'
+  cd ${nerdfonts_dir}
+  ./install.sh || fail 'Failed to install nerd-fonts'
+  cd -
 }
 
 install_powerlevel10k() {
@@ -86,7 +99,7 @@ install_powerlevel10k() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${powerlevel10k_dir} || fail 'Failed to install powerlevel10k'
 
   grep --quiet 'ZSH_THEME=' $HOME/.zshrc || fail '.zshrc has unexpected structure'
-  sed -i '' 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
+  sed -i 's/ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc || fail 'Failed to change the zsh theme'
 }
 
 install_chrome() {
@@ -137,6 +150,7 @@ missing google-chrome && install_chrome
 br
 warn Pumping up your zsh:
 install_oh_my_zsh
+install_nerd_fonts
 install_powerlevel10k
 
 br
